@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/estebansalazar-27/notes/user"
+
 )
 
 //	Create a note with the fields
@@ -23,7 +24,7 @@ type Note struct {
 	CreatedAt time.Time `json:"created_at"`
 }
 
-func (note Note) Save() error {
+func (note *Note) Save() error {
 	//  If u want to export the struc to a file as a json, u must export the fields adding capitalizing the properties
 	fileName := strings.ReplaceAll(note.Title, " ", "_")
 	fileName = strings.ToLower(fileName) + ".json"

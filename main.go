@@ -5,20 +5,20 @@ import (
 
 	"github.com/estebansalazar-27/notes/files"
 	"github.com/estebansalazar-27/notes/notes"
-	"github.com/estebansalazar-27/notes/task"
+	"github.com/estebansalazar-27/notes/tasks"
 )
 
 func main() {
 	//  Structs declarations
 	var newNote *notes.Note
-	var newTask *task.Task
+	var newTask *tasks.Task
 
 	// Get structs data
 	title, content, closing := notes.GetNoteData()
-	description := task.GetTaskData()
+	description := tasks.GetTaskData()
 
 	//  Structs definitions
-	newTask, newTaskErr := task.New(description)
+	newTask, newTaskErr := tasks.New(description)
 	newNote, newNoteErr := notes.New(title, content, closing)
 
 	if newTaskErr != nil {
@@ -40,4 +40,8 @@ func main() {
 		fmt.Print(saveNoteErr)
 	}
 	fmt.Print(newNote)
+}
+
+func add[T int](a, b T) T {
+	return a + b
 }

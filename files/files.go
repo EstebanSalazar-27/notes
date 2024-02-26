@@ -1,5 +1,7 @@
 package files
 
+import "fmt"
+
 // Our saver interface is gonna accept any structure wich contains a Save method attached  therefore we're gonna pass it task and note
 type Saver interface {
 	Save() error
@@ -12,17 +14,18 @@ type Outputtable interface {
 	Displayer
 }
 
-// With this saveData function we are gonna pass our structs such as Task or Note and call their save function
-func SaveData(data Saver) error {
-	err := data.Save()
+func Print(value interface{}) {
+	vlAsInt, isInt := value.(int)
+	vlAsStr, isStr := value.(string)
 
-	if err != nil {
-		return err
+	if isStr {
+		fmt.Print("Str: ", vlAsStr)
 	}
-	return nil
-
+	if isInt {
+		fmt.Print("Int:", vlAsInt)
+	}
+	fmt.Print(value)
 }
-
 func OutputData(data Outputtable) error {
 	data.Display()
 	return data.Save()
